@@ -1,0 +1,127 @@
+<?php
+require('connection.php');
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<style >
+		body{background-color: rgb(0,204,102);}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg bg-light">
+		<a class="nav-link">COD<span class="sr-only">(current)</span></a>
+<a class="nav-link" href="index.php">HOME</a>
+<a class="nav-link" href='view.php'>View Marks</a>
+</nav>
+<h2 align="center">Assign units to lecturer as follows:</h2>
+<div class='row'>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>
+        <div style="width:1500px;">
+                        <div style="width:1500px;">
+                        <div class='b'>
+<form method="POST" action="" class="px-4 py-3">
+	<label>Lecturers ID<input type="text" class="form-control" name="id" id="form_name" value=""></label>
+	<label>Lecturer<input type="text" class="form-control" name="lecturer" id="form_lecture" value=""></label><br><br>
+	<label>unit code<input type="text" class="form-control" name="code" id="form_code" value=""></label>
+		<label>unit name<input type="text" class="form-control" name="name" id="form_name" value=""></label><br><br>
+		<label>Course<input type="text" class="form-control" name="course" id="form_course" value=""></label><br><br>
+    <label>Academic year<select size="1" name="academy">
+      <option>2017/2018</option>
+      <option>2018/2019</option>
+      <option>2019/2020</option>
+    </select></label><br><br>
+    <label>Semester<select size="1" name="semester"><option>Jan-April</option>
+      <option>May-Aug</option>
+<option>Sept-Dec</option>
+    </select></label><br><br>
+		<input type="submit" name="submit"  value="Assign">
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p></p>
+<div class='row'>
+  <div class='col-md-1'></div>
+  <div class='col-md-10'>
+  <footer class="section footer-classic" style="background-color: rgb(204,204,204);">
+        <div class="container">
+          <div class="row row-30">
+            <div class="col-md-4 col-xl-5">
+              <div class="pr-xl-4">
+                <p>We are ranked the best university in technology in kenya and in East Africa.</p>
+                <p>We are Africa's MIT. DeKUT everyone's choice!!</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <h5>Contacts</h5>
+              <dl class="contact-list">
+                <dt>Address:</dt>
+                <dd>657-10100 Nairobi kenya</dd>
+              </dl>
+              <dl class="contact-list">
+                <dt>email:</dt>
+                <dd><a href="mailto:#"><span style="text-color: black;">dedan@or.ac.ke</span></a></dd>
+              </dl>
+              <dl class="contact-list">
+                <dt>phones:</dt>
+                <dd><a href="tel:#">+254700000000</a> <span>or</span> <a href="tel:#">+254700000000</a>
+                </dd>
+              </dl>
+            </div>
+            <div class="col-md-4 col-xl-3">
+              <h5>Links</h5>
+              <ul class="nav-list">
+                <li><a href="about.php">About Us</a></li>
+                <li><a href="help.php">Help Center</a></li>
+                <li><a href="about.php">Contacts</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+</footer>
+<hr>
+<footer id="sp-footer-wrapper" class="text-center">
+<div class="container">
+<div class="row-fluid" id="footer">
+<div id="sp-footer1" class="span2">
+<span class="copyright">&copy; Copyright 2018 Dedan Kimathi University of Technology</span>
+</div>
+</div>
+</footer>
+</body>
+</html>
+<?php
+if($_SERVER['REQUEST_METHOD']=='POST'){
+	$ID=$_POST['id'];
+	$Lecturer=$_POST['lecturer'];
+$Code=$_POST['code'];
+$Name=$_POST['name'];
+$Course=$_POST['course'];
+$Academic=$_POST['academy'];
+$Semester=$_POST['semester'];
+	$sql="INSERT INTO units(Lecturer,Unit_code,Unit_name,Course,Lecturer_ID,Academic_year,Semester)VALUES('$Lecturer','$Code','$Name','$Course','$ID','$Academic','$Semester')";
+$query=mysqli_query($con,$sql);
+if ($query) {
+	echo "<font color='blue'>New record created successfully</font>";
+}
+else
+{
+	echo "Error adding record".mysqli_error($con);
+}
+}
+?>
